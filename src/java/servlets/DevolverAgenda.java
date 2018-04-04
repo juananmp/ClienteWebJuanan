@@ -48,21 +48,18 @@ public class DevolverAgenda extends HttpServlet {
             out.println("<body>");
            
                out.println("<form action='/ClienteWebJuanan/Main' method='POST'>");
-               
-            servlet.Persona p = new Persona();
-            servlet.Agenda a = service.getServiciosBasicosPort().mostrarAgenda();
-            out.println("<h1>Servlet ValidarXSD at " + a.getPersona().toString() + "</h1>");
 
-////            for(servlet.Agenda){
-////                
-////            }
-//            for(Persona pe : a.getPersona()){
-//                if(pe.getName().equals(name)){
-//                    p = pe;
-//                    break;
-//                }
-//            }
-  
+            servlet.Agenda a = service.getServiciosBasicosPort().mostrarAgenda();
+           
+
+            for(servlet.Persona p : a.getPersona()){
+                out.println("<h1>Name: "+ p.getName() + "</h1>");
+                out.println("<h1>Email: "+ p.getEmail()+ "</h1>");
+                out.println("<h1>Telephone: "+ p.getTelephone() + "</h1>");
+                out.println("<h2>-----------------------------------"+ "</h2>");
+                
+            }
+
                 out.println("<input type='submit' value='Volver Página inicial'>");
             out.println("<h1>Servlet ValidarXSD at " + request.getContextPath() + "</h1>");
             out.println("</body>");
