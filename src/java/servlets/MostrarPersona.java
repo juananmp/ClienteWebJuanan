@@ -53,6 +53,10 @@ public class MostrarPersona extends HttpServlet {
                 }else{
                            out.println("<h1>El usuario: " + name + " " + "no se encuentra en la agenda"+ "</h1>");
                         }
+                out.println("<form action='/ClienteWebJuanan/Main' method='POST'>");
+               
+                out.println("<input type='submit' value='Volver Página inicial'>");
+            out.println("</form>");
             } catch (JAXBException_Exception ex) {
                 Logger.getLogger(MostrarPersona.class.getName()).log(Level.SEVERE, null, ex);
             }
