@@ -37,9 +37,16 @@ public class GuardarPersona extends HttpServlet {
         
         servlet.ServiciosBasicos_Service service = new ServiciosBasicos_Service();
         servlet.Persona p = new Persona();
+        
+         out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ValidarDTD</title>");            
+            out.println("</head>");
+            out.println("<body>");
           
-          
-            
+            out.println("<form action='/ClienteWebJuanan/Main' method='POST'>");
+             
         String name = request.getParameter("name");
            
         String email = request.getParameter("email");
@@ -49,9 +56,17 @@ public class GuardarPersona extends HttpServlet {
         p.setName(name);
         p.setEmail(email);
         p.setTelephone(telephone);
-        
+          out.println("<h1>El usuario: " + name+"Se ha creado correctamente"+ "</h1>");
         
        service.getServiciosBasicosPort().crearContacto(p);
+         
+                out.println("<input type='submit' value='Volver Página inicial'>");
+            out.println("</form>");
+            out.println("<h1>Servlet ValidarDTD at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+          
+            
         
         }
     }
