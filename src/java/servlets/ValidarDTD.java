@@ -11,14 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import servlet.Persona;
-import servlet.ServiciosBasicos_Service;
+import servlet.ValidarXSDDTD_Service;
 
 /**
  *
  * @author janto
  */
-public class GuardarPersona extends HttpServlet {
+public class ValidarDTD extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,27 +31,28 @@ public class GuardarPersona extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+         
+         
         try (PrintWriter out = response.getWriter()) {
+             ValidarXSDDTD_Service service = new ValidarXSDDTD_Service();
+            String b = service.getValidarXSDDTDPort().validarDTD();
+//////                        System.out.println(b);
             /* TODO output your page here. You may use following sample code. */
-        
-        servlet.ServiciosBasicos_Service service = new ServiciosBasicos_Service();
-        servlet.Persona p = new Persona();
-          
-          
-            
-        String name = request.getParameter("name");
-           
-        String email = request.getParameter("email");
-        
-        int telephone = Integer.parseInt(request.getParameter("telephone"));
-       
-        p.setName(name);
-        p.setEmail(email);
-        p.setTelephone(telephone);
-        
-        
-       service.getServiciosBasicosPort().crearContacto(p);
-        
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ValidarDTD</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ValidarDTD at " + b+ "</h1>");
+            out.println("<form action='/ClienteWebJuanan/Main' method='POST'>");
+               
+                out.println("<input type='submit' value='Volver Página inicial'>");
+            out.println("</form>");
+            out.println("<h1>Servlet ValidarDTD at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

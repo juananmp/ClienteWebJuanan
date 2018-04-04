@@ -7,10 +7,13 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servlet.JAXBException_Exception;
 import servlet.Persona;
 import servlet.ServiciosBasicos_Service;
 
@@ -18,7 +21,7 @@ import servlet.ServiciosBasicos_Service;
  *
  * @author janto
  */
-public class GuardarPersona extends HttpServlet {
+public class DevolverAgenda extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,27 +35,42 @@ public class GuardarPersona extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-        
-        servlet.ServiciosBasicos_Service service = new ServiciosBasicos_Service();
-        servlet.Persona p = new Persona();
-          
-          
+          try (PrintWriter out = response.getWriter()) {
+            response.setContentType("text/html;charset=UTF-8");
+            servlet.ServiciosBasicos_Service service = new ServiciosBasicos_Service();
+            String name = request.getParameter("name");
             
-        String name = request.getParameter("name");
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ValidarXSD</title>");            
+            out.println("</head>");
+            out.println("<body>");
            
-        String email = request.getParameter("email");
-        
-        int telephone = Integer.parseInt(request.getParameter("telephone"));
-       
-        p.setName(name);
-        p.setEmail(email);
-        p.setTelephone(telephone);
-        
-        
-       service.getServiciosBasicosPort().crearContacto(p);
-        
+               out.println("<form action='/ClienteWebJuanan/Main' method='POST'>");
+               
+            servlet.Persona p = new Persona();
+            servlet.Agenda a = service.getServiciosBasicosPort().mostrarAgenda();
+            out.println("<h1>Servlet ValidarXSD at " + a.getPersona().toString() + "</h1>");
+
+////            for(servlet.Agenda){
+////                
+////            }
+//            for(Persona pe : a.getPersona()){
+//                if(pe.getName().equals(name)){
+//                    p = pe;
+//                    break;
+//                }
+//            }
+  
+                out.println("<input type='submit' value='Volver Página inicial'>");
+            out.println("<h1>Servlet ValidarXSD at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+
+          
+        } catch (JAXBException_Exception ex) {
+            Logger.getLogger(DevolverAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

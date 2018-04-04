@@ -8,6 +8,22 @@
         <servlet-name>GuardarPersona</servlet-name>
         <servlet-class>servlets.GuardarPersona</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidarXSD</servlet-name>
+        <servlet-class>servlets.ValidarXSD</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ValidarDTD</servlet-name>
+        <servlet-class>servlets.ValidarDTD</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarPersona</servlet-name>
+        <servlet-class>servlets.MostrarPersona</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DevolverAgenda</servlet-name>
+        <servlet-class>servlets.DevolverAgenda</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -15,6 +31,22 @@
     <servlet-mapping>
         <servlet-name>GuardarPersona</servlet-name>
         <url-pattern>/GuardarPersona</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarXSD</servlet-name>
+        <url-pattern>/ValidarXSD</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarDTD</servlet-name>
+        <url-pattern>/ValidarDTD</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarPersona</servlet-name>
+        <url-pattern>/MostrarPersona</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DevolverAgenda</servlet-name>
+        <url-pattern>/DevolverAgenda</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

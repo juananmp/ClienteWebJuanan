@@ -7,18 +7,20 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import servlet.Persona;
+import servlet.JAXBException_Exception;
 import servlet.ServiciosBasicos_Service;
 
 /**
  *
  * @author janto
  */
-public class GuardarPersona extends HttpServlet {
+public class MostrarPersona extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,27 +34,37 @@ public class GuardarPersona extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+         servlet.ServiciosBasicos_Service service = new ServiciosBasicos_Service();
+        String name = request.getParameter("name");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-        
-        servlet.ServiciosBasicos_Service service = new ServiciosBasicos_Service();
-        servlet.Persona p = new Persona();
-          
-          
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet MostrarPersona</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            try {
+                servlet.Persona p = service.getServiciosBasicosPort().mostarPersona(name);
+                if(p!=null){
+                out.println("<h1>Name: "+ p.getName() + "</h1>");
+                out.println("<h1>Email: "+ p.getEmail()+ "</h1>");
+                out.println("<h1>Telephone: "+ p.getTelephone() + "</h1>");
+                }else{
+                           out.println("<h1>El usuario: " + name + " " + "no se encuentra en la agenda"+ "</h1>");
+                        }
+            } catch (JAXBException_Exception ex) {
+                Logger.getLogger(MostrarPersona.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
-        String name = request.getParameter("name");
-           
-        String email = request.getParameter("email");
-        
-        int telephone = Integer.parseInt(request.getParameter("telephone"));
-       
-        p.setName(name);
-        p.setEmail(email);
-        p.setTelephone(telephone);
-        
-        
-       service.getServiciosBasicosPort().crearContacto(p);
-        
+            
+            
+            
+////            try {
+////                p = service.getServiciosBasicosPort().mostarPersona(name);
+            out.println("<h1>Servlet MostrarPersona at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
