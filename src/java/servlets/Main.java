@@ -53,14 +53,17 @@ public class Main extends HttpServlet {
                 
                 out.println("<input type='submit' value='Ver Agenda'>");
             out.println("</form>");
+            out.println("<hr>");
              out.println("<form action='/ClienteWebJuanan/ValidarXSD' method='POST'>");
                
                 out.println("<input type='submit' value='Validar XSD'>");
             out.println("</form>");
+            out.println("<hr>");
              out.println("<form action='/ClienteWebJuanan/ValidarDTD' method='POST'>");
                
                 out.println("<input type='submit' value='Validar DTD'>");
             out.println("</form>");
+            out.println("<hr>");
             out.println("<form action='/ClienteWebJuanan/MostrarPersona' method='POST'>");
                 out.println("<input type='text' name='name'>");
                 out.println("<input type='submit' value='Ver persona'>");
